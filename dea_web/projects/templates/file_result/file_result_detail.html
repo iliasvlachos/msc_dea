@@ -1,0 +1,20 @@
+{% extends "basic/header.html" %}
+{% load static %}
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <h1 style="display: inline">Results for  {{ file_result.file }}</h1>
+            <span class="float-end"><a href="{% url 'projects-file-detail' file_result.file.project.id file_result.file.id %}" class="btn bg-button-dark">Return <i class="bi bi-arrow-left-circle" style="font-size: 1.2rem;"></i></a></span>
+        </div>
+        <div class="card-body">
+            <p>date: {{file_result.date}}</p>
+            <a href="{{file_result.results_file.url}}" class="btn btn-outline-info" target="_blank">Open PDF</a>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-12"></div>
+    </div>
+
+{% endblock content %}

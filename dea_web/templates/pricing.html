@@ -1,0 +1,74 @@
+{% extends "basic/header.html" %}
+{% block content %}
+
+    <div class="row align-items-center">
+        <div class="col col-12">
+            <div class="card">
+                <div class="card-body">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Home</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Pricing</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="spacer-sm"></div>
+
+    <div class="row">
+        <div class="col col-12">
+            <div class="card">
+                <div class="card-body">
+                    <p class="card-text blockquote">
+                        Please check our pricing table below. Each tier has a limit on maximum projects allowed.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="spacer-sm"></div>
+
+    <div class="row gy-4">
+        <div class="col col-12 col-md-4">
+            <div class="card">
+                <div class="card-header">Small</div>
+                <div class="card-body">
+                    <h5 class="card-title">Free tier</h5>
+                    <p class="card-text">
+                        A free tier available to all users at no cost. This tier provides access to one project per account.
+                    </p>
+                </div>
+                <div class="card-footer">Available for free</div>
+            </div>
+        </div>
+        <div class="col col-12 col-md-4">
+            <div class="card">
+                <div class="card-header">Medium</div>
+                <div class="card-body">
+                    <h5 class="card-title">Most Popular</h5>
+                    <p class="card-text">
+                        Suitable for most users. This tier provides access to five projects per account.
+                    </p>
+                </div>
+                <div class="card-footer">Available at 50€ per year</div>
+            </div>
+        </div>
+        <div class="col col-12 col-md-4">
+            <div class="card">
+                <div class="card-header">Large</div>
+                <div class="card-body">
+                    <h5 class="card-title">Most Popular</h5>
+                    <p class="card-text">
+                        Suitable for most users. This tier provides access to five projects per account.
+                    </p>
+                </div>
+                <div class="card-footer">Available at 100€ per year</div>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}

@@ -1,0 +1,230 @@
+{% extends "basic/header.html" %}
+{% load static %}
+{% load mathfilters %}
+{% load projects_tags %}
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <h2 style="display: inline">DEA results</h2>
+        </div>
+        <div class="card-body">
+            <ul class="nav nav-pills mb-3" id="pills-tab" role="tablist">
+                <li class="nav-item px-md-1" role="presentation">
+                    <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-home" type="button" role="tab" aria-controls="pills-home"
+                            aria-selected="true">Analysis details
+                    </button>
+                </li>
+                <li class="nav-item px-md-1" role="presentation">
+                    <button class="nav-link eff" id="pills-efficient-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-efficient" type="button" role="tab" aria-controls="pills-efficient"
+                            aria-selected="false">DMU Efficiencies
+                    </button>
+                </li>
+                <li class="nav-item px-md-1" role="presentation">
+                    <button class="nav-link" id="pills-weights-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-weights" type="button" role="tab" aria-controls="pills-weights"
+                            aria-selected="false">Weights
+                    </button>
+                </li>
+                <li class="nav-item px-md-1" role="presentation">
+                    <button class="nav-link" id="pills-lambdas-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-lambdas" type="button" role="tab" aria-controls="pills-lambdas"
+                            aria-selected="false">Lambdas
+                    </button>
+                </li>
+                <li class="nav-item px-md-1" role="presentation">
+                    <button class="nav-link" id="pills-projections-tab" data-bs-toggle="pill"
+                            data-bs-target="#pills-projections" type="button" role="tab" aria-controls="pills-projections"
+                            aria-selected="false">Efficiency Projections
+                    </button>
+                </li>
+            </ul>
+            <div class="tab-content" id="pills-tabContent">
+                <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">Orientation</th>
+                                <th scope="col">Returns to Scale</th>
+                                <th scope="col">Total Inputs</th>
+                                <th scope="col">Total Outputs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>
+                                    {% if result_data.details.orientation == 'Max' %}
+                                        <strong>input</strong>
+                                    {% else %}
+                                        <strong>output</strong>
+                                    {% endif %}
+                                </td>
+                                <td>
+                                    {% if result_data.details.rts == 'crs' %}
+                                        <strong>CRS</strong>
+                                    {% else %}
+                                        <strong>VRS</strong>
+                                    {% endif %}
+                                </td>
+                                <td>{{ result_data.details.inputs|length }}</td>
+                                <td>{{ result_data.details.outputs|length }}</td>
+                            </tr>
+                            <tr class="tr-blank"><td colspan="4"></td></tr>
+                        </tbody>
+                        <thead>
+                            <tr>
+                                <th scope="col" colspan="2">Inputs</th>
+                                <th scope="col" colspan="2">Outputs</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td colspan="2">
+                                    {% for input in result_data.details.inputs %}
+                                        <p>{{ input }}</p>
+                                    {% endfor %}
+                                </td>
+                                <td colspan="2">
+                                    {% for output in result_data.details.outputs %}
+                                        <p>{{ output }}</p>
+                                    {% endfor %}
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="pills-efficient" role="tabpanel" aria-labelledby="pills-efficient-tab">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">DMU</th>
+                                <th scope="col">Efficiency (%)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for row, result in result_data.results.items %}
+                                {% if result.status == 1 %}
+                                    <tr class="{% if result_data.obj_values|get_item:row == 1.0 %}table-success{% else %}table-danger{% endif %}">
+                                        <td>{{ row }}</td>
+                                        <td>{{ result_data.eff_ratios|get_item:row }}</td>
+                                    </tr>
+                                {% else %}
+                                    <tr>
+                                        <td class="alert alert-danger">Optimization for {{ row }}: Error code {{ result.status }}</td>
+                                        <td class="alert alert-warning">{{ result.message }}</td>
+                                    </tr>
+                                {% endif %}
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="pills-weights" role="tabpanel" aria-labelledby="pills-weights-tab">
+                    <table class="table table-bordered">
+                        {% for row, result in result_data.results.items %}
+                            {% if result.status == 1 %}
+                                <thead class="{% if result_data.obj_values|get_item:row == 1.0 %}table-success{% else %}table-danger{% endif %}">
+                                    <tr>
+                                        <th scope="col">DMU</th>
+                                        <th scope="col">Efficiency</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ row }}</td>
+                                        <td>{{ result_data.eff_ratios|get_item:row }}</td>
+                                    </tr>
+                                </tbody>
+                                <thead>
+                                    <tr>
+                                        {% for variable in result.variables %}
+                                            {% if variable.name != 'var_zero' %}
+                                                <th scope="col">{{ variable }}</th>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        {% for variable in result.variables %}
+                                            {% if variable.name != 'var_zero' %}
+                                                <td>{{ variable.value|floatformat:4 }}</td>
+                                            {% endif %}
+                                        {% endfor %}
+                                    </tr>
+                                    <tr class="tr-blank"><td colspan="{{ result.variables|length }}"></td></tr>
+                                </tbody>
+                            {% else %}
+                                <thead>
+                                    <tr>
+                                        <th scope="col">DMU</th>
+                                        <th scope="col">Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>{{ result.row }}</td>
+                                        <td>{{ result.status }}</td>
+                                    </tr>
+                                </tbody>
+                            {% endif %}
+                        {% endfor %}
+                    </table>
+                </div>
+                <div class="tab-pane fade" id="pills-lambdas" role="tabpanel" aria-labelledby="pills-lambdas-tab">
+                    <div class="table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th scope="col">DMU</th>
+                                    <th scope="col" class="table-primary">θ</th>
+                                    {% for row, result in result_data.results.items %}
+                                        <th scope="col" colspan="1">{{ row }}</th>
+                                    {% endfor %}
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {% for row, result in result_data.results.items %}
+                                    <tr>
+                                        <td>{{ row }}</td>
+                                        {% for name, constraint in result.constraints.items %}
+                                            <td colspan="1" class="{% if forloop.counter0 == 0 %}table-primary{% endif %}">{{ constraint.pi|floatformat:4|abs }}</td>
+                                        {% endfor %}
+                                    </tr>
+                                {% endfor %}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="pills-projections" role="tabpanel" aria-labelledby="pills-projections-tab">
+                    <div class="alert alert-info">only inefficient units appear</div>
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">DMU</th>
+                                {% for col in result_data.projections.cols %}
+                                    <th scope="col">{{ col }}</th>
+                                {% endfor %}
+                            </tr>
+                        </thead>
+                        <tbody>
+                        {% for dmu, projection in result_data.projections.items %}
+                            {% if dmu != 'cols' %}
+                                <tr>
+                                    <td>{{ dmu }}</td>
+                                    {% for value in projection %}
+                                        <td>{{ value|floatformat:4|abs }}</td>
+                                    {% endfor %}
+                                </tr>
+                            {% endif %}
+                        {% endfor %}
+                        
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+{% endblock content %}

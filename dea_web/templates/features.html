@@ -1,0 +1,86 @@
+{% extends "basic/header.html" %}
+{% block content %}
+
+    <header class="py-5">
+        <div class="container px-lg-5">
+            <div class="p-4 p-lg-5 bg-light rounded-3 text-center">
+                <div class="m-4 m-lg-5">
+                    <h1 class="display-5 fw-bold">Features</h1>
+                    <p class="fs-4">The application provides a basic set of tools to offer you an easy way of performing
+                        DEA analysis</p>
+                    <a class="btn bg-button-dark btn-lg" href="{% url 'projects-create' %}">Try Now</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <section class="pt-4">
+        <div class="container px-lg-5">
+            <!-- Page Features-->
+            <div class="row gx-lg-5">
+                <div class="col-lg-6 col-xxl-4 mb-5">
+                    <div class="card bg-light border-0 h-100">
+                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                            <div class="feature bg-color bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                                    class="bi bi-collection"></i></div>
+                            <h2 class="fs-4 fw-bold">Fresh new layout</h2>
+                            <p class="mb-0">Easy to use UI with clear procedures</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xxl-4 mb-5">
+                    <div class="card bg-light border-0 h-100">
+                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                            <div class="feature bg-color bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                                    class="bi bi-cloud-download"></i></div>
+                            <h2 class="fs-4 fw-bold">Results download</h2>
+                            <p class="mb-0">You can download the results in PDF format</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xxl-4 mb-5">
+                    <div class="card bg-light border-0 h-100">
+                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                            <div class="feature bg-color bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                                    class="bi bi-card-heading"></i></div>
+                            <h2 class="fs-4 fw-bold">Projects Collection</h2>
+                            <p class="mb-0">Create projects to keep your information clearly stored</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xxl-4 mb-5">
+                    <div class="card bg-light border-0 h-100">
+                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                            <div class="feature bg-color bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                                    class="bi bi-file-earmark-spreadsheet"></i></div>
+                            <h2 class="fs-4 fw-bold">File Upload</h2>
+                            <p class="mb-0">Easy data import in Excel or CSV file. Upload once, analyse with no
+                                restrictions</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xxl-4 mb-5">
+                    <div class="card bg-light border-0 h-100">
+                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                            <div class="feature bg-color bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                                    class="bi bi-code"></i></div>
+                            <h2 class="fs-4 fw-bold">Instant feedback</h2>
+                            <p class="mb-0">As a user you get near instant feedback with the analysis results</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-xxl-4 mb-5">
+                    <div class="card bg-light border-0 h-100">
+                        <div class="card-body text-center p-4 p-lg-5 pt-0 pt-lg-0">
+                            <div class="feature bg-color bg-gradient text-white rounded-3 mb-4 mt-n4"><i
+                                    class="bi bi-patch-check"></i></div>
+                            <h2 class="fs-4 fw-bold">Data security</h2>
+                            <p class="mb-0">The applications uses industry standards for protecting your data.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+{% endblock %}

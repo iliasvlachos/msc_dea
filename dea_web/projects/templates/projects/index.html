@@ -1,0 +1,16 @@
+{% extends "basic/header.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <h1 style="display: inline">Your Projects</h1>
+            <span class="text-muted float-right card-title-right" style="display: inline"><a href="{% url 'projects-create' %}">New Project <img src="{% static 'icons/terminal.svg' %}"></a></span>
+        </div>
+        <div class="card-body">
+            <p>Some data here</p>
+        </div>
+    </div>
+
+{% endblock content %}

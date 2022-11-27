@@ -1,0 +1,28 @@
+{% block footer %}
+
+    <div class="card footer text-white">
+        <div class="container">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col col-12 col-md-6 col-lg-4">
+                        <blockquote class="text-muted">Menu</blockquote>
+                        <p><a href="{% url 'dea-index' %}" class="text-white" style="text-decoration: none;">Home</a></p>
+                        <p><a href="{% url 'features-page' %}" class="text-white" style="text-decoration: none;">Features</a></p>
+                        <p><a href="{% url 'pricing-page' %}" class="text-white" style="text-decoration: none;">Tiers</a></p>
+                    </div>
+                    <div class="col col-12 col-md-6 col-lg-4">
+                        <blockquote class="text-muted">About</blockquote>
+                        <p>Unipi</p>
+                        <p>IT Dep</p>
+                        <p>Pricing</p>
+                    </div>
+                    <div class="col col-12 col-lg-4"></div>
+                </div>
+            </div>
+        </div>
+    <div class="card-footer text-muted text-center">
+                &copy; {% now 'Y' %} - DEA Web App by University of Piraeus
+            </div>
+    </div>
+
+{% endblock footer %}

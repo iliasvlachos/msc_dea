@@ -1,0 +1,80 @@
+/* custom css code */
+
+.navbar{
+    background-color: #0c426f !important;
+    --bs-navbar-nav-link-padding-x: 1.0rem;
+}
+
+body{
+    background-color: #f5f5f5;
+}
+
+.footer {
+    border-radius: 0 !important;
+    background-color: #0c426f;
+    margin-bottom: 0;
+}
+.copyright {
+    text-align: center;
+}
+
+.bg-color{
+    background-color: #0c426f;
+}
+
+.card-title-right{
+    position: relative;
+    height: auto;
+    vertical-align: bottom;
+}
+
+.custom-link{
+    text-decoration: none;
+}
+
+
+.spacer-xm{
+    padding-top: 2%;
+}
+
+.spacer-sm{
+    padding-top: 5%;
+}
+
+.bg-button-dark {
+    background-color: #0c426f;
+    color: white;
+}
+
+.feature {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 4rem;
+  width: 4rem;
+  font-size: 2rem;
+}
+
+.nav-pills .nav-link.active {
+    background-color: #0c426f;
+    color: white;
+}
+.nav-pills .nav-link {
+    background: #cfedff;
+    color: #0c426f;
+}
+
+.nav-pills .nav-link .eff {
+    background: #d1e7dd !important;
+    color: #0f5132;
+}
+
+.nav-pills .nav-link .ineff {
+    background: #f8d7da;
+    color: #842029;
+}
+
+.tr-blank {
+    background-color: #0c426f;
+    height: 2rem;
+}

@@ -1,0 +1,32 @@
+{% extends "basic/header.html" %}
+{% load static %}
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <h1 style="display: inline">File {{ file.name }}</h1>
+            <span class="float-end"><a href="{% url 'projects-detail' project.id %}" class="btn bg-button-dark">Return <i class="bi bi-arrow-left-circle" style="font-size: 1.2rem;"></i></a></span>
+        </div>
+        <div class="card-body">
+            <div class="alert alert-info">
+                <p>Click to download file: <a href="{{file.file.url}}">{{file.name }}</a></p>
+            </div>
+            <p><span class="lead">Description:</span> {{ file.description }}</p>
+            {% if file.fileresult_set.all %}
+                <h4>Results</h4>
+                <hr>
+                {% for res in file.fileresult_set.all %}
+                    <div class="row">
+                        <div class="col-sm-3"><p>{{ res.date }}</p></div>
+                    </div>
+                    <a href="{% url 'projects-file-result' res.file.project.id res.file.id res.id %}" class="btn btn-outline-info" title="Open project"><img src="{% static 'icons/eye-fill.svg' %}"></a>
+                    <a href="{{res.results_file.url}}" class="btn btn-outline-warning" target="_blank" title="Open file"><img src="{% static 'icons/file-earmark-code.svg' %}"></a>
+                    <hr>
+                {% endfor %}
+            {% endif %}
+{#            <a href="{% url 'projects-file-calculate-lp' file.project.id file.id %}" class="btn bg-button-dark">Open Data</a>#}
+            <a href="{% url 'lp-solve' file.project.id file.id %}" class="btn bg-button-dark">Open Data</a>
+        </div>
+    </div>
+
+{% endblock content %}

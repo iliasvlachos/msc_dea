@@ -1,0 +1,49 @@
+{% extends "basic/header.html" %}
+{% block content %}
+
+    <div class="row align-items-center">
+        <div class="col col-12">
+            <div class="card">
+                <div class="card-body">
+                    <nav aria-label="breadcrumb">
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#">Account</a></li>
+                            <li class="breadcrumb-item active" aria-current="page">Tiers</li>
+                        </ol>
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="spacer-sm"></div>
+
+    <div class="alert alert-warning">Please select a tier to continue</div>
+    <div class="row">
+        {% for tier in tiers %}
+            <div class="col-sm-4">
+                <div class="card">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="card-header">
+                            {{ tier.title}}
+                        </div>
+                        <div class="card-body">
+                            <p>{{tier.description}}</p>
+                            <p>MAX Projects : {{tier.max_projects}}</p>
+                            <input type="hidden" name="selected_tier" value="{{tier.title}}">
+                        </div>
+                        <div class="card-footer">
+                            {% if user.is_authenticated and user.user_tier.tier.title == tier.title %}
+                                <button class="btn btn-secondary" disabled>Selected</button>
+                            {% else %}
+                                <button type="submit" class="btn bg-button-dark">Select</button>
+                            {% endif %}
+                        </div>
+                    </form>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+
+{% endblock %}

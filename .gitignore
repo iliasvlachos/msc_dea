@@ -1,0 +1,29 @@
+# virtual environment
+deavenv
+# add your virtual env path
+
+# PyCharm
+.idea
+/dea/.idea
+*.iws /out/
+
+# Environ
+# add .env path
+dea_web/dea/.env
+
+# Python #
+*.py[cod]
+*$py.class
+
+# Django
+*.log
+*.pot
+*.pyc
+__pycache__/
+dea_web/db.sqlite3
+dea_web/projects/migrations
+dea_web/users/migrations
+dea_web/media
+dea_web/static_root
+dea_web/notes.txt
+

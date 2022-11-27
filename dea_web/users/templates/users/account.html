@@ -1,0 +1,19 @@
+{% extends "basic/header.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <h1>Account Information</h1>
+        </div>
+        <div class="card-body">
+            <p>Some data here</p>
+            <p>Username: {{ user.username }}</p>
+            <p>E-mail: {{ user.email }}</p>
+        </div>
+        <div class="card-footer">
+            <p>Your account is on the <b>{{ user_tier.tier.title }}</b> tier. You can create up to <b>{{ user_tier.tier.max_projects }}</b> projects</p>
+        </div>
+    </div>
+
+{% endblock content %}

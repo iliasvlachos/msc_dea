@@ -1,0 +1,76 @@
+{% block navbar %}
+
+    <nav class="navbar navbar-expand-lg navbar-dark bg-light">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home-page' %}">DEA UNIPI</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="{% url 'dea-index' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'features-page' %}">Features</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'pricing-page' %}">Tiers</a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                           aria-expanded="false">
+                            Unipi
+                        </a>
+                        <ul class="dropdown-menu">
+                            <li><a class="dropdown-item" href="https://www.unipi.gr/unipi/el/" target="_blank">Home
+                                Page</a></li>
+                            <li><a class="dropdown-item" href="https://www.cs.unipi.gr/index.php?lang=el"
+                                   target="_blank">Department of Informatics</a></li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Something else here</a></li>
+                        </ul>
+                    </li>
+                    {% if user.is_authenticated %}
+                        <li class="nav-item">
+                            <a class="nav-link btn btn-outline-info" href="{% url 'projects-list' %}">Projects</a>
+                        </li>
+                        &nbsp;
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle btn btn-outline-success" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Account
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'user-account' %}">My
+                                    Account</a></li>
+                                <li><a class="dropdown-item" href="{% url 'projects-list' %}">My
+                                    Projects</a></li>
+                                <li>
+                                    <hr class="dropdown-divider">
+                                </li>
+                                <li><a class="dropdown-item" href="{% url 'user-logout' %}">Log Out</a></li>
+                            </ul>
+                        </li>
+                    {% else %}
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle btn btn-outline-success" href="#" role="button"
+                               data-bs-toggle="dropdown" aria-expanded="false">
+                                Account
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a class="dropdown-item" href="{% url 'user-login' %}" target="_blank">Login</a></li>
+                                <li><a class="dropdown-item" href="{% url 'user-register' %}" target="_blank">Register</a></li>
+                            </ul>
+                        </li>
+                    {% endif %}
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+{% endblock %}

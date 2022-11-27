@@ -1,0 +1,22 @@
+{% extends "basic/header.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+
+    <div class="card">
+        <div class="card-header">
+            <h1>Login Now</h1>
+        </div>
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+                <fieldset class="form-group">
+                    {{ form|crispy }}
+                </fieldset>
+                <button type="submit" class="btn btn-primary">Login</button>
+            </form>
+            <small class="text-muted">Forgot your password? <a href="{% url 'password_reset' %}">Reset</a></small>
+            <small class="text-muted float-right">Don't have an account yet? <a href="{% url 'user-register' %}">Register now</a></small>
+        </div>
+    </div>
+
+{% endblock content %}
