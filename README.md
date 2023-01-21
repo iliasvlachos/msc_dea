@@ -1,6 +1,6 @@
 # msc_dea
 
-This application was developed in the context of a Master's Thesis. Full document of the thesis is available in University of Piraeus repository [Dioni](https://dione.lib.unipi.gr/xmlui/).
+This application was developed in the context of a Master's Thesis. Full document of the thesis is available in University of Piraeus repository [Dioni](https://dione.lib.unipi.gr/xmlui/handle/unipi/15034).
 
 dea_web is a Django project performing Data Envelopment Analysis on a set of data uploaded be the user using an Excel file.
 
